@@ -2,13 +2,20 @@ import pdfplumber
 from tkinter import Tk, filedialog
 from PyPDF2 import PdfReader, PdfWriter
 from pathlib import Path
+from openpyxl import  load_workbook
 import time
 import os
+from datetime import datetime
+import json
+
+abrir = load_workbook(r"C:\Users\joao.beserra\Downloads\Power Automate - Controle de energias elétricas - 20251.xlsx")
+
+planilha = abrir["ATUAL - POWER AUTOMATE"]
 
 
-
-
-
+consultas = {}
+agora = datetime.now()
+agora = (f"{agora.day}/{agora.month}/{agora.year} {agora.hour}:{agora.minute}:{agora.second}")
 
 while True:
     print("\n\nDigite o número baseado na ação que deseja executar:\n[1] Extrair PDF e preencher planilha [2] Separar Canhotos de Faturas [3] Fechar")
@@ -30,7 +37,7 @@ while True:
             
         )
 
-        print(f"{arquivos_pdf}\n\n") 
+        print(f"{arquivos_pdf}\n") 
         inicio = time.time()
         for caminho_pdf in arquivos_pdf:
             with pdfplumber.open(caminho_pdf) as pdf:
@@ -45,38 +52,40 @@ while True:
                     linha_principal = len(linhas) - 3
                     linha_alvo = linhas[linha_principal]
                     partes = linha_alvo.split(" ", 2)
+                    partes[0] = partes[0].split('/')[0]
                     print(f"{countcedrap}:{caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}\n")
                     resultado = f"CEDRAP:\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}"
+                    resultado = {
+                        "empresa": "CEDRAP",
+                        "id": partes[0],
+                        "vencimento": partes[1],
+                        "valor": partes[2]
+                    }
                     resultados.append(resultado)
                     
                 elif "nota fiscal/conta de energia elétrica" in conteudo_unificado:
                     countedp += 1
+                    empresa = ""
                     print("Fatura EDP - SÃO PAULO detectada.")
                     if len(linhas) > 43:
                         print("Segundo template de fatura detectado.")
                         linha_principal = len(linhas) - 3
+                        empresa = "EDP-SP-MODELO02"
                     else:
                         print("Primeiro template de fatura detectado.")
                         linha_principal = len(linhas) - 4
+                        empresa = "EDP-SP-MODELO01"
                     linha_alvo = linhas[linha_principal]
                     partes = linha_alvo.split(" ", 2)
                     print(f"{countedp}: {caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}\n")
                     resultado = f"EDP:\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}"
-                    resultados.append(resultado)
-                   
-                elif "nota fiscal/conta de energia elétrica" in conteudo_unificado:
-                    countedp += 1
-                    print("Fatura EDP - SÃO PAULO detectada.")
-                    if len(linhas) > 43:
-                        print("Segundo template de fatura detectado.")
-                        linha_principal = len(linhas) - 3
-                    else:
-                        print("Primeiro template de fatura detectado.")
-                        linha_principal = len(linhas) - 4
-                    linha_alvo = linhas[linha_principal]
-                    partes = linha_alvo.split(" ", 2)
-                    print(f"{countedp}: {caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}\n")
-                    resultado = f"EDP:\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}"
+                    partes[2] = partes[2].split(' ')[1]
+                    resultado = {
+                        "empresa": empresa,
+                        "id": partes[0],
+                        "vencimento": partes[1],
+                        "valor": partes[2]
+                    }
                     resultados.append(resultado)
                 elif "elektro" in conteudo_unificado:
                     countelektro = countelektro + 1
@@ -89,18 +98,57 @@ while True:
                     
                     print(f"{countelektro}: {caminho_pdf}\nID Unidade Consumidora:  {linhas[0]}, Vencimento: {vencimento}, Valor: {valor}\n")
                     resultado = f"ELEKTRO:\nID Unidade Consumidora: {linhas[0]}, Vencimento: {vencimento}, Total a Pagar: R${valor}"
+                    resultado = {
+                        "empresa": "ELEKTRO",
+                        "id": linhas[0],
+                        "vencimento": vencimento,
+                        "valor": valor
+                    }
                     resultados.append(resultado)
             
                 else:
                     print(f"{count}:{caminho_pdf} - Fatura não reconhecida\nConteúdo extraído: {conteudo_unificado[:300]}...")  # Mostra os primeiros 300 chars para debug
 
                 count = count+1
+                
         fim = time.time()
         tempo_total = fim - inicio
         
-        print("\nRESULTADOS ENCONTRADOS: ")
-        for resultado in resultados:
-            print(f"\n{resultado}") 
+        consultas = {}
+
+        if os.path.exists("consultas.jsonl"):
+            # ler apenas para deifinir o tamanho da variavel id
+            with open("consultas.jsonl", "r", encoding="utf-8") as f:
+                for linha in f:
+                    # pra cada linha no jsonl eu vou tirar os espaços e \n
+                    if linha.strip():
+                        # eu coloco tudo dentro de consultas, todas as linhas do jsonl
+                        linha_dict = json.loads(linha)
+                        consultas.update(linha_dict)
+        else: 
+            with open("consultas.jsonl", "w", encoding="utf-8") as f:
+                print("criado do 0 consultas.jsol")
+
+        # tiver dados ele pega o maior id e define
+        if consultas:
+            # vai estar assim ó consultas = { consulta_1: {...}, consulta_2: {...}} é só pegar os ids de cada linha e no final ele vai definir o maior+1=proximo
+            ultimo_id = [int(key.split("_")[1]) for key in consultas.keys()]
+            count_consulta = max(ultimo_id) + 1
+        else:
+            count_consulta = 1
+
+        id_consulta = f"consulta_{count_consulta}"
+
+        # nova entrada de consulta
+        consultas[id_consulta] = {
+            "timestamp": agora,
+            "duracao_consulta": f"{tempo_total:.2f}s",
+            "resultados": resultados,
+        }
+        # salva de volta no arquivo, usando o patametro "a"=ammend para adicionar no final
+        with open("consultas.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({id_consulta: consultas[id_consulta]}, ensure_ascii=False) + "\n")
+          
         print(f"\nTempo total de execução: {tempo_total:.2f} segundos")                
         print(f"Total de faturas CEDRAP: {countcedrap}")
         print(f"Total de faturas ELEKTRO: {countelektro}")
@@ -109,7 +157,8 @@ while True:
         countedp = 0
         countcedrap = 0
         countelektro = 0
-        count = 0       
+        count = 0   
+       
                    
     elif opcao == "2":
         pasta_documentos = Path.home() / "Documents"
@@ -155,12 +204,6 @@ while True:
                 print(f"Página {contador} salva em: {caminho_completo}")
                 contador +=1 
         print(f"Total de arquivos criados: {contador}")
-            
-            
-
-
-        
-        
         print("✅ PDF separado com sucesso! Ele se encontra no caminho: \nEstou abrindo a pasta com todos os PDFs pra você...")
         os.startfile(caminho_pasta)
         
