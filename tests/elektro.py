@@ -18,9 +18,10 @@ for caminho_pdf in arquivos_pdf:
         linhas = texto.split('\n')  
         for i, linha in enumerate(linhas):
             print(f"{i}: {linha}")
+            if "Emissão: " in linha:   
+                emissao = valor = linha.split(" ")[-1]
         conteudo_unificado = " ".join(linhas).lower()  # array
         
-        resumo = []
 
         if "elektro" in conteudo_unificado:
             print("Fatura ELEKTRO detectada.")

@@ -1,1 +1,1 @@
-# ainda vai vir
+Sim, a Inertia.js foi projetada para funcionar com o Vue.js (ou React e Svelte), atuando como uma "cola" que conecta o backend (como Laravel) ao frontend. Em vez de construir APIs RESTful para o frontend, a Inertia permite que você envie componentes Vue diretamente do lado do servidor, proporcionando uma experiência de aplicação de página única (SPA) sem a necessidade de bibliotecas de roteamento do lado do cliente como Vue Router. 

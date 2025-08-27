@@ -12,10 +12,11 @@ abrir = load_workbook(r"C:\Users\joao.beserra\Downloads\Power Automate - Control
 
 planilha = abrir["ATUAL - POWER AUTOMATE"]
 
-
+lookup_planilha = {}
+pasta_logs = Path("logs_consultas")
+pasta_logs.mkdir(exist_ok=True)
 consultas = {}
-agora = datetime.now()
-agora = (f"{agora.day}/{agora.month}/{agora.year} {agora.hour}:{agora.minute}:{agora.second}")
+
 
 while True:
     print("\n\nDigite o número baseado na ação que deseja executar:\n[1] Extrair PDF e preencher planilha [2] Separar Canhotos de Faturas [3] Fechar")
@@ -27,6 +28,9 @@ while True:
     countedp=0
     countelektro=0
     if opcao == "1": 
+        agora = datetime.now()
+        ano_mes = (f"{agora.month:02d}-{agora.year}")
+        agora = (f"{agora.day}/{agora.month}/{agora.year} {agora.hour}:{agora.minute}:{agora.second}")
         
         print("Abrindo caixa de seleção de PDF...")  
         Tk().withdraw()
@@ -49,17 +53,21 @@ while True:
                 if "cedrap" in conteudo_unificado:
                     countcedrap += 1
                     print("Fatura CEDRAP detectada.")
+                    for i, linha in enumerate(linhas):
+                        if "DATA DE EMISSÃO: " in linha:
+                            emissao = valor = linha.split(":")[-1]
                     linha_principal = len(linhas) - 3
-                    linha_alvo = linhas[linha_principal]
-                    partes = linha_alvo.split(" ", 2)
+                    dados_pricipais = linhas[linha_principal]
+                    dados_pricipais = dados_pricipais + emissao
+                    partes = dados_pricipais.split(" ")
                     partes[0] = partes[0].split('/')[0]
-                    print(f"{countcedrap}:{caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}\n")
-                    resultado = f"CEDRAP:\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}"
+                    print(f"{countcedrap}:{caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}, Data de Emissão: {partes[3]}\n")
                     resultado = {
                         "empresa": "CEDRAP",
                         "id": partes[0],
                         "vencimento": partes[1],
-                        "valor": partes[2]
+                        "valor": partes[2],
+                        "data-emissao": partes[3]
                     }
                     resultados.append(resultado)
                     
@@ -67,42 +75,55 @@ while True:
                     countedp += 1
                     empresa = ""
                     print("Fatura EDP - SÃO PAULO detectada.")
+                    for i, linha in enumerate(linhas):
+                        if "Emissão " in linha:
+                            emissao = valor = linha.split(" ")[-1]
                     if len(linhas) > 43:
                         print("Segundo template de fatura detectado.")
                         linha_principal = len(linhas) - 3
-                        empresa = "EDP-SP-MODELO02"
                     else:
                         print("Primeiro template de fatura detectado.")
                         linha_principal = len(linhas) - 4
-                        empresa = "EDP-SP-MODELO01"
-                    linha_alvo = linhas[linha_principal]
-                    partes = linha_alvo.split(" ", 2)
-                    print(f"{countedp}: {caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}\n")
-                    resultado = f"EDP:\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}"
-                    partes[2] = partes[2].split(' ')[1]
+                    dados_pricipais = linhas[linha_principal] 
+                    dados_pricipais = dados_pricipais.split(" ")
+                    id = dados_pricipais[0]
+                    ven = dados_pricipais[1]
+                    val = dados_pricipais[3]
+                    print(f"{id}, {ven}, {val}, {emissao}")
+                    partes = [id, ven, val, emissao]
+                    print(f"{countedp}: {caminho_pdf}\nID Unidade Consumidora: {partes[0]}, Vencimento: {partes[1]}, Total a Pagar: {partes[2]}, Data de Emissão: {partes[3]}\n")
                     resultado = {
-                        "empresa": empresa,
+                        "empresa": "EDP - SÃO PAULO",
                         "id": partes[0],
                         "vencimento": partes[1],
-                        "valor": partes[2]
+                        "valor": partes[2],
+                        "data-emissao": partes[3]
                     }
                     resultados.append(resultado)
                 elif "elektro" in conteudo_unificado:
                     countelektro = countelektro + 1
                     print("Fatura ELEKTRO detectada.")
+                    for i, linha in enumerate(linhas):
+                        if "Emissão: " in linha:   
+                            emissao = valor = linha.split(" ")[-1]
                     
-                    linha5 = [linhas[5]]  
-                    vencimento = linha5[0].split(' ')[3] 
-                    valor = linha5[0].split(' ')[5]  
+                    linha_dos_dados = [linhas[5]]
+
+                    string = linha_dos_dados[0]
+                    vencimento = string.split(" ")[-3] 
+                    valor = string.split(" ")[-1]
+                    linha = (linhas[0], vencimento, valor, emissao)  
+                    print(linha)
                     
                     
-                    print(f"{countelektro}: {caminho_pdf}\nID Unidade Consumidora:  {linhas[0]}, Vencimento: {vencimento}, Valor: {valor}\n")
-                    resultado = f"ELEKTRO:\nID Unidade Consumidora: {linhas[0]}, Vencimento: {vencimento}, Total a Pagar: R${valor}"
+                    print(f"{countelektro}: {caminho_pdf}\nID Unidade Consumidora:  {linhas[0]}, Vencimento: {linha[1]}, Valor: {linha[2]}, Data de Emissão: {linha[3]}\n")
+                    resultado = f"ELEKTRO:\nID Unidade Consumidora: {linhas[0]}, Vencimento: {vencimento}, Total a Pagar: R${linha[2]}, Data de Emissão: {linha[3]}"
                     resultado = {
                         "empresa": "ELEKTRO",
                         "id": linhas[0],
-                        "vencimento": vencimento,
-                        "valor": valor
+                        "vencimento": linha[1],
+                        "valor": linha[2],
+                        "data-emissao": linha[3]
                     }
                     resultados.append(resultado)
             
@@ -115,10 +136,12 @@ while True:
         tempo_total = fim - inicio
         
         consultas = {}
+        nome_arquivo_jsonl = pasta_logs / f"consultas_{ano_mes}.jsonl"
+        nome_arquivo_json_bonito = pasta_logs / f"consultas_{ano_mes}_bonito.json"
 
-        if os.path.exists("consultas.jsonl"):
+        if os.path.exists(f"{nome_arquivo_jsonl}"):
             # ler apenas para deifinir o tamanho da variavel id
-            with open("consultas.jsonl", "r", encoding="utf-8") as f:
+            with open(f"{nome_arquivo_jsonl}", "r", encoding="utf-8") as f:
                 for linha in f:
                     # pra cada linha no jsonl eu vou tirar os espaços e \n
                     if linha.strip():
@@ -126,7 +149,7 @@ while True:
                         linha_dict = json.loads(linha)
                         consultas.update(linha_dict)
         else: 
-            with open("consultas.jsonl", "w", encoding="utf-8") as f:
+            with open(f"{nome_arquivo_jsonl}" , "w", encoding="utf-8") as f:
                 print("criado do 0 consultas.jsol")
 
         # tiver dados ele pega o maior id e define
@@ -146,8 +169,12 @@ while True:
             "resultados": resultados,
         }
         # salva de volta no arquivo, usando o patametro "a"=ammend para adicionar no final
-        with open("consultas.jsonl", "a", encoding="utf-8") as f:
+        with open(f"{nome_arquivo_jsonl}", "a", encoding="utf-8") as f:
             f.write(json.dumps({id_consulta: consultas[id_consulta]}, ensure_ascii=False) + "\n")
+
+        # salvar versão bonita em JSON normal (indentado)
+        with open(nome_arquivo_json_bonito, "w", encoding="utf-8") as f:
+            json.dump(consultas, f, ensure_ascii=False, indent=4)
           
         print(f"\nTempo total de execução: {tempo_total:.2f} segundos")                
         print(f"Total de faturas CEDRAP: {countcedrap}")
@@ -165,7 +192,7 @@ while True:
         nome_subpasta = "paginas_impares_pdf"
         caminho_pasta = pasta_documentos / nome_subpasta
         os.makedirs(caminho_pasta, exist_ok=True)
-        print(f"Pasta criada em: {caminho_pasta}")#makedir cria uma pasta com o nome passado como parametro, se existir ja n faz nada
+        print(f"Pasta criada em: {caminho_pasta}") #makedir cria uma pasta com o nome passado como parametro, se existir ja n faz nada
         
         print("Abrindo caixa de seleção de PDF...") 
         Tk().withdraw()

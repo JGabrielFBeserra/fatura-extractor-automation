@@ -20,15 +20,16 @@ for caminho_pdf in arquivos_pdf:
 
         for i, linha in enumerate(linhas):
             print(f"{i}: {linha}")
+            if "DATA DE EMISSÃO: " in linha:
+                emissao = valor = linha.split(":")[1]
 
-        if "cedrap" in conteudo_unificado:
-            print("Fatura CEDRAP detectada.")
-            linha_principal = len(linhas) - 3  # linha principal é a antepenultima linha da pagina (a linha onde fica oque eu quero)
-            linha_alvo = linhas[linha_principal] 
-            print(linha_alvo)
-            partes = linha_alvo.split(" ", 2)
-            print(partes)
-            print(f"ID Unidade Consumidora: {partes[0]}\nVencimento: {partes[1]}\nTotal a Pagar: {partes[2]}\n")
-        else:
-            print(f"Fatura CEDRAP não detectada no arquivo: {caminho_pdf}")
-        
+        print("Fatura CEDRAP detectada.")
+        linha_principal = len(linhas) - 3  # linha principal é a antepenultima linha da pagina (a linha onde fica oque eu quero)
+        dados_pricipais = linhas[linha_principal] 
+        dados_pricipais = dados_pricipais + emissao
+        print(f"{dados_pricipais}")
+        partes = dados_pricipais.split(" ")
+        print(partes)
+        print(f"ID Unidade Consumidora: {partes[0]}\nVencimento: {partes[1]}\nTotal a Pagar: {partes[2]}\nData de Emissão: {partes[3]}")
+
+    

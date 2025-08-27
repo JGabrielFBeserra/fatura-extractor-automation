@@ -1,0 +1,587 @@
+{
+    "consulta_1": {
+        "timestamp": "27/8/2025 14:39:56",
+        "duracao_consulta": "2.35s",
+        "resultados": [
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "151312453",
+                "vencimento": "07/07/2025",
+                "valor": "235,89",
+                "data-emissao": "23/06/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0151312459",
+                "vencimento": "07/07/2025",
+                "valor": "236,79",
+                "data-emissao": "20/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119458",
+                "vencimento": "15/07/2025",
+                "valor": "105,36",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119450",
+                "vencimento": "15/07/2025",
+                "valor": "69,62",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119491",
+                "vencimento": "15/07/2025",
+                "valor": "108,89",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119480",
+                "vencimento": "15/07/2025",
+                "valor": "56,95",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119572",
+                "vencimento": "15/07/2025",
+                "valor": "1.004,25",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40077314",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "41590856",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "39961559",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40070530",
+                "vencimento": "13/06/2025",
+                "valor": "655,82",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40070808",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0150859809",
+                "vencimento": "07/07/2025",
+                "valor": "83,06",
+                "data-emissao": "13/06/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0150851105",
+                "vencimento": "07/07/2025",
+                "valor": "131,03",
+                "data-emissao": "16/06/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "41684010",
+                "vencimento": "13/06/2025",
+                "valor": "244,88",
+                "data-emissao": "16/05/2025"
+            }
+        ]
+    },
+    "consulta_2": {
+        "timestamp": "27/8/2025 14:40:13",
+        "duracao_consulta": "3.16s",
+        "resultados": [
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "151312453",
+                "vencimento": "07/07/2025",
+                "valor": "235,89",
+                "data-emissao": "23/06/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0151312459",
+                "vencimento": "07/07/2025",
+                "valor": "236,79",
+                "data-emissao": "20/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119458",
+                "vencimento": "15/07/2025",
+                "valor": "105,36",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119450",
+                "vencimento": "15/07/2025",
+                "valor": "69,62",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119491",
+                "vencimento": "15/07/2025",
+                "valor": "108,89",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119480",
+                "vencimento": "15/07/2025",
+                "valor": "56,95",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119572",
+                "vencimento": "15/07/2025",
+                "valor": "1.004,25",
+                "data-emissao": "27/06/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40077314",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "41590856",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "39961559",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40070530",
+                "vencimento": "13/06/2025",
+                "valor": "655,82",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "40070808",
+                "vencimento": "13/06/2025",
+                "valor": "47,28",
+                "data-emissao": "08/05/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0150859809",
+                "vencimento": "07/07/2025",
+                "valor": "83,06",
+                "data-emissao": "13/06/2025"
+            },
+            {
+                "empresa": "EDP - SÃO PAULO",
+                "id": "0150851105",
+                "vencimento": "07/07/2025",
+                "valor": "131,03",
+                "data-emissao": "16/06/2025"
+            },
+            {
+                "empresa": "ELEKTRO",
+                "id": "41684010",
+                "vencimento": "13/06/2025",
+                "valor": "244,88",
+                "data-emissao": "16/05/2025"
+            }
+        ]
+    },
+    "consulta_3": {
+        "timestamp": "27/8/2025 14:42:25",
+        "duracao_consulta": "11.52s",
+        "resultados": [
+            {
+                "empresa": "CEDRAP",
+                "id": "333771",
+                "vencimento": "15/08/2025",
+                "valor": "768,78",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118283",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118277",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118361",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118278",
+                "vencimento": "15/08/2025",
+                "valor": "176,81",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118282",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118281",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119458",
+                "vencimento": "15/08/2025",
+                "valor": "108,54",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118280",
+                "vencimento": "15/08/2025",
+                "valor": "69,80",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "333776",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118279",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119479",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119480",
+                "vencimento": "15/08/2025",
+                "valor": "57,90",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119481",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3120973",
+                "vencimento": "15/08/2025",
+                "valor": "66,77",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119482",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119454",
+                "vencimento": "15/08/2025",
+                "valor": "57,90",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119732",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119733",
+                "vencimento": "15/08/2025",
+                "valor": "57,90",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119489",
+                "vencimento": "15/08/2025",
+                "valor": "85,72",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119483",
+                "vencimento": "15/08/2025",
+                "valor": "60,42",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3120162",
+                "vencimento": "15/08/2025",
+                "valor": "457,50",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119460",
+                "vencimento": "15/08/2025",
+                "valor": "254,82",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119737",
+                "vencimento": "15/08/2025",
+                "valor": "57,90",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119455",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119456",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119747",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119457",
+                "vencimento": "15/08/2025",
+                "valor": "59,07",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119488",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119748",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119449",
+                "vencimento": "15/08/2025",
+                "valor": "1.753,54",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119749",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119451",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119487",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119486",
+                "vencimento": "15/08/2025",
+                "valor": "61,55",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119484",
+                "vencimento": "15/08/2025",
+                "valor": "962,37",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119730",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119485",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119452",
+                "vencimento": "15/08/2025",
+                "valor": "61,40",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119450",
+                "vencimento": "15/08/2025",
+                "valor": "55,94",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119811",
+                "vencimento": "15/08/2025",
+                "valor": "59,32",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119804",
+                "vencimento": "15/08/2025",
+                "valor": "295,42",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118311",
+                "vencimento": "15/08/2025",
+                "valor": "884,04",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118312",
+                "vencimento": "15/08/2025",
+                "valor": "1.448,25",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118313",
+                "vencimento": "15/08/2025",
+                "valor": "1.283,74",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119572",
+                "vencimento": "15/08/2025",
+                "valor": "265,21",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119241",
+                "vencimento": "15/08/2025",
+                "valor": "1.374,81",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "responsável",
+                "vencimento": "pela",
+                "valor": "reparação",
+                "data-emissao": "dos"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3120548",
+                "vencimento": "15/08/2025",
+                "valor": "1.504,71",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "6118325",
+                "vencimento": "15/08/2025",
+                "valor": "1.740,12",
+                "data-emissao": "29/07/2025"
+            },
+            {
+                "empresa": "CEDRAP",
+                "id": "3119491",
+                "vencimento": "15/08/2025",
+                "valor": "438,67",
+                "data-emissao": "29/07/2025"
+            }
+        ]
+    }
+}
